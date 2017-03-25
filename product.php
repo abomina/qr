@@ -16,6 +16,6 @@
     $sql = "SELECT qr FROM data";
     $stmt = sqlsrv_query( $conn, $sql);
     while( $obj = sqlsrv_fetch_object( $stmt)) {
-    	echo $obj->qr."<br />";
+    	echo $obj->qr."<br>";
 	}
 ?>
