@@ -2,7 +2,7 @@
 /*
  conexion
 */
-=======
+
 $serverName = "173.163.175.227"; //serverName\instanceName
 $connectionInfo = array( "Database"=>"spreasheet", "UID"=>"sa", "PWD"=>"Insolsap1");
 $conn = sqlsrv_connect( $serverName, $connectionInfo);
