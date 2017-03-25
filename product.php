@@ -3,7 +3,6 @@
 	$postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$purl = $request->purl;
-    echo gettype($purl);
     //echo $purl;
     $sql1 = "INSERT INTO data (qr)
          VALUES (?)";
