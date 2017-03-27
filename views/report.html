@@ -1,0 +1,64 @@
+<br><br>
+<div lass="container" ng-app="demoApp" ng-controller="report">
+	<div class="row">
+		<div class="col-sm-6 col-md-offset-3">
+			<div class="form-group">
+				<div class='input-group date' id='datetimepicker6'>
+					<input type="text" name="datef" id="datef" ng-model="datef" value="" placeholder="Date From" class="form-control" required/>
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6 col-md-offset-3">
+			<div class="form-group">
+				<div class='input-group date' id='datetimepicker7'>
+					<input type="text" name="datet" id="datet" ng-model="datet" value="" placeholder="Date to" class="form-control" required/>
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 col-md-offset-5">
+			<div class="form-group">
+				<a class="btn btn-success center-block" role="button" ng-click="search()">Search</a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1"> 
+			<br>
+			<table class="table table-bordered table-hover table-condensed">
+				<thead>
+					<tr>
+						<th>
+							QR
+						</th>
+						<th>
+							Date
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="post in est">
+						<td>
+							<!--identificacion-->
+							{{post.qr}}
+						</td>
+						<td>
+							<!--nombre-->
+							{{post.date}}
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

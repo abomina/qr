@@ -31,6 +31,14 @@ app.config(function($routeProvider, $locationProvider) {
         controller: "DemoCtrl"
 
     })
+
+    .when('/report', {
+
+        templateUrl : 'views/report.html',
+
+        controller: "report"
+
+    })
     //$locationProvider.html5Mode(true);
 
 });
@@ -57,5 +65,46 @@ app.controller("DemoCtrl",function($scope,$http){
         //else {
         //    $scope.message = "You have Filled Wrong Details! Error: " + error;
         //}
+    }
+});
+app.controller("report",function($scope,$http){
+    $('#datetimepicker6').datetimepicker({
+    format: 'YYYY-MM-DD'
+    });
+    $('#datetimepicker7').datetimepicker({
+      useCurrent: false, //Important! See issue #1075
+      format: 'YYYY-MM-DD'
+    });
+    $("#datetimepicker6").on("dp.change", function (e) {
+      $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker7").on("dp.change", function (e) {
+      $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+    $scope.search = function() {
+        $scope.date1=document.getElementById("datef").value;
+        $scope.date2=document.getElementById("datet").value;
+        if($scope.date1=="" || $scope.date2==""){
+            alert("Debe registrar fechas");
+        }else{
+            var request = $http({
+                method: "post",
+                url: "info.php",
+                data: {
+                    datef: $scope.date1,
+                    datet: $scope.date2
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (data) {
+                $scope.est = data;
+                console.log(data);
+            });
+            //}
+            //else {
+            //    $scope.message = "You have Filled Wrong Details! Error: " + error;
+            //}
+        }
     }
 });
