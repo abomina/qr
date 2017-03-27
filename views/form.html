@@ -1,10 +1,11 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+<div class="jumbotron" lass="container" ng-app="demoApp" ng-controller="form">
   <div class="container">
   <div class="col-md-10 col-md-offset-1">
   <form class="form-horizontal" method="post">
        <section class="section-container clear-fix">
-          <h3>Form Client</h3>
+          <center><h3>Form Client</h3></center>
+          <br>
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -54,7 +55,7 @@
 
 
               <div class="form-group">
-                 <label for="state" class="col-sm-3 control-label">State: <span class="form-required">*</span></label>
+                 <label for="state" class="col-sm-3 control-label">State:</span></label>
                  <div class="col-sm-7">
                   <select class="form-control" id="state" name="state" tabindex="7">
                         <option value="" selected="">Select...</option>
@@ -121,8 +122,36 @@
                     </div>
               </div>
 
-            </div>  
+        </div>  
         </div>
+             <div class="form-group">
+                    <label for="zip" class="col-sm-3 control-label">Horary</label>
+                    <div class="col-sm-7">
+
+
+          <div class="col-md-4">
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                  <input type="text" name="datef" id="datef" ng-model="datef" value="" placeholder="From" class="form-control" required/>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker4'>
+                <input type="text" name="datef" id="datef" ng-model="datef" value="" placeholder="to" class="form-control" required/>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+         </div> 
+          </div>
+              </div>
+
           <div class="form-group">
           <label for="comments" class="col-sm-3 control-label">Comments: <span class="form-required">*</span></label>
           <div class="col-sm-5">
@@ -130,8 +159,11 @@
           </div>
         </div>
   </section>
-                    
+  <br>
+
+      <div class ="row">              
      <center> <input type="send" name="send" value="Send" class="btn btn-primary" tabindex="10"></center>
+     </div>
                           
 </form>
 

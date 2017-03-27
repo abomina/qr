@@ -85,7 +85,7 @@ app.controller("report",function($scope,$http){
         $scope.date1=document.getElementById("datef").value;
         $scope.date2=document.getElementById("datet").value;
         if($scope.date1=="" || $scope.date2==""){
-            alert("Debe registrar fechas");
+            alert("Must record dates");
         }else{
             var request = $http({
                 method: "post",
@@ -109,20 +109,11 @@ app.controller("report",function($scope,$http){
     }
 });
 app.controller("form",function($scope,$http){
-    $scope.save = function() {
-        var request = $http({
-            method: "post",
-            url: "user.php",
-            data: {
-                datef: $scope.date1,
-                datet: $scope.date2
-            },
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        });
-        /* Check whether the HTTP Request is Successfull or not. */
-        request.success(function (data) {
-            $scope.est = data;
-            console.log(data);
-        });
-    }
+    $('#datetimepicker3').datetimepicker({
+    format: 'LT'
+    });
+    $('#datetimepicker4').datetimepicker({
+      useCurrent: false, //Important! See issue #1075
+      format: 'LT'
+    });
 });
