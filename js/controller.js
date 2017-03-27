@@ -108,3 +108,21 @@ app.controller("report",function($scope,$http){
         }
     }
 });
+app.controller("form",function($scope,$http){
+    $scope.save = function() {
+        var request = $http({
+            method: "post",
+            url: "user.php",
+            data: {
+                datef: $scope.date1,
+                datet: $scope.date2
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        });
+        /* Check whether the HTTP Request is Successfull or not. */
+        request.success(function (data) {
+            $scope.est = data;
+            console.log(data);
+        });
+    }
+});
