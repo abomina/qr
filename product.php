@@ -1,5 +1,4 @@
 <?php
-	error_reporting(0);
 	require('connection.php');
 	$postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
