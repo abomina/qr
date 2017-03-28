@@ -171,7 +171,7 @@ app.factory("auth", function($sessionStorage,$location,$http)
         checkStatus : function()
         {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/form","/qr","/report","/main"];
+            /*var rutasPrivadas = ["/form","/qr","/report","/main"];
             if(this.in_array($location.path(),rutasPrivadas) && typeof($sessionStorage.username) == "undefined")
             {
                 $location.path("/");
@@ -180,7 +180,7 @@ app.factory("auth", function($sessionStorage,$location,$http)
             if(this.in_array("/",rutasPrivadas) && typeof($sessionStorage.username) != "undefined")
             {
                 $location.path("/main");
-            }
+            }*/
         },
         in_array : function(needle, haystack)
         {
