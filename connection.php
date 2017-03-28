@@ -1,16 +1,14 @@
 <?php
-/*
- conexion
-*/
+// Carga la configuración 
+$config = parse_ini_file('config.ini'); 
 
-$serverName = "173.163.175.227"; //serverName\instanceName
-$connectionInfo = array( "Database"=>"spreasheet", "UID"=>"sa", "PWD"=>"Insolsap1");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+// Conexión con los datos del 'config.ini' 
+$connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']); 
 
-if( $conn ) {
-     //echo "Conexión establecida.<br />";
-}else{
-     //echo "Conexión no se pudo establecer.<br />";
-     //die( print_r( sqlsrv_errors(), true));
-}
+// Si la conexión falla, aparece el error 
+/*if($connection === false) { 
+ echo 'Ha habido un error <br>'.mysqli_connect_error(); 
+} else {
+ echo 'Conectado a la base de datos';
+}*/
 ?>

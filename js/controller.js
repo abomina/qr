@@ -13,7 +13,7 @@ app.config(function($routeProvider, $locationProvider) {
 
     .when('/', {
 
-        templateUrl : 'views/main.html',
+        templateUrl : 'views/login.html',
 
 
     })
