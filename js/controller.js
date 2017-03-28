@@ -221,7 +221,7 @@ app.controller('loginController', function($scope,$http,auth)
         });
         /* Check whether the HTTP Request is Successfull or not. */
         request.success(function (data) {
-            if(data!="true"){
+            if(data=="true"){
                 auth.loginRegister($scope.usernamer, $scope.passwordr);
             }else{
                 alert("error");

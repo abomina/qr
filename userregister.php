@@ -5,7 +5,8 @@
     @$pass = $request->pass;
     @$user = $request->user;
     @$email = $request->email;
-    if($connection->query("INSERT INTO user(usu_user,usu_pass,usu_email)values('".$user."','".md5($pass)."','".$email."')")){
+    $consulta="INSERT INTO user(usu_user,usu_pass,usu_email)values('".$user."','".md5($pass)."','".$email."')";
+    if(mysqli_query($connection, $consulta)){
     	echo "true";	
     }else{
     	echo "false";
