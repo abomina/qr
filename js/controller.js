@@ -73,6 +73,13 @@ app.controller("DemoCtrl",function($scope,$http){
         //    $scope.message = "You have Filled Wrong Details! Error: " + error;
         //}
     }*/
+    $scope.decode = function () {
+        var img = document.querySelector('imgqr');
+        qr.decodeFromImage(imgqr, function (err, result) {
+          //if (err) throw err;
+          alert(result);
+        });
+    }
 });
 app.controller("report",function($scope,$http){
     $('#datetimepicker6').datetimepicker({

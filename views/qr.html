@@ -26,11 +26,11 @@
   	</div>
   </div>
   <div class="container">
-    <input type="file" id="files" name="files[]" multiple />
+    <input type="file" id="files" name="files[]" accept="image/*"/>
     <output id="list"></output>
 
       <!--<img src="../tests/assets/qrcode.png" alt="qr code">-->
-      <button id="decode">Decode!</button>
+      <button id="decode" ng-click="decode()">Decode!</button>
   </div>
 </div>
 <script>
@@ -68,19 +68,11 @@
   var qr = new QCodeDecoder();
 
   if (!(qr.isCanvasSupported() && qr.hasGetUserMedia())) {
-    alert('Your browser doesn\'t match the required specs.');
-    throw new Error('Canvas and getUserMedia are required');
+    /*alert('Your browser doesn\'t match the required specs.');
+    throw new Error('Canvas and getUserMedia are required');*/
   }
+  
 
-  var btn = document.querySelector('button#decode');
-  var img = document.querySelector('imgqr');
-
-  btn.onclick = function () {
-    qr.decodeFromImage(imgqr, function (err, result) {
-      //if (err) throw err;
-      alert(result);
-    });
-  };
 </script>
 <script type="text/javascript">
 
@@ -117,14 +109,6 @@
 
     // attach some event handlers to reset and
     // stop whenever we want.
-
-    reset.onclick = function () {
-      qr.decodeFromCamera(video, resultHandler);
-    };
-
-    stop.onclick = function () {
-      qr.stop();
-    };
 
   })();
   </script>
