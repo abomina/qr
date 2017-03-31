@@ -2,8 +2,6 @@
 
 const modules = [
   'ngRoute',
-  'webcam',
-  'bcQrReader',
   'ngStorage'
 ];
 var app = angular.module("myApp", modules);
@@ -52,7 +50,7 @@ app.config(function($routeProvider, $locationProvider) {
 
 });
 app.controller("DemoCtrl",function($scope,$http){
-    $scope.start = function() {
+    /*$scope.start = function() {
         $scope.cameraRequested = true;
     }
     $scope.processURLfromQR = function (url) {
@@ -67,14 +65,14 @@ app.controller("DemoCtrl",function($scope,$http){
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
         /* Check whether the HTTP Request is Successfull or not. */
-        request.success(function (data) {
+       /* request.success(function (data) {
             console.log(data);
         });
         //}
         //else {
         //    $scope.message = "You have Filled Wrong Details! Error: " + error;
         //}
-    }
+    }*/
 });
 app.controller("report",function($scope,$http){
     $('#datetimepicker6').datetimepicker({

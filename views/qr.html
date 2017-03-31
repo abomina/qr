@@ -19,19 +19,114 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-<div ng-app="demoApp" ng-controller="DemoCtrl">
+<div ng-controller="DemoCtrl">
   <div class="jumbotron">
   	<div class="container">
-    		<center>
-  			<h2>bc-qr-reader</h2>
-  				<button ng-click="start()" class="btn btn-success">Activate scanner</button>
-  				<p ng-hide="cameraRequested && !cameraIsOn">Your browser should ask for permission to use the camera.</p>
-  				<div>
-    					<bc-qr-reader active="cameraRequested" on-result="processURLfromQR" on-error="onError" camera-status="cameraIsOn" width="200px" height="200px"></bc-qr-reader>
-  				</div>
-  				<p ng-show="url">QR code detected!</p>
-  				<p><b>{{ url }}</b></p>
-  		</center>
+    	 <video autoplay></video>
+        <button id="reset">Reset</button>
+        <button id="stop" >Stop</button>
   	</div>
   </div>
+  <div class="container">
+    <input type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+
+      <!--<img src="../tests/assets/qrcode.png" alt="qr code">-->
+      <button id="decode">Decode!</button>
+  </div>
 </div>
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" id="imgqr" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+  var qr = new QCodeDecoder();
+
+  if (!(qr.isCanvasSupported() && qr.hasGetUserMedia())) {
+    alert('Your browser doesn\'t match the required specs.');
+    throw new Error('Canvas and getUserMedia are required');
+  }
+
+  var btn = document.querySelector('button#decode');
+  var img = document.querySelector('imgqr');
+
+  btn.onclick = function () {
+    qr.decodeFromImage(imgqr, function (err, result) {
+      //if (err) throw err;
+      alert(result);
+    });
+  };
+</script>
+<script type="text/javascript">
+
+  (function () {
+    'use strict';
+
+    var qr = new QCodeDecoder();
+
+    if (!(qr.isCanvasSupported() && qr.hasGetUserMedia())) {
+      alert('Your browser doesn\'t match the required specs.');
+      throw new Error('Canvas and getUserMedia are required');
+    }
+
+    var video = document.querySelector('video');
+    var reset = document.querySelector('#reset');
+    var stop = document.querySelector('#stop');
+
+
+    function resultHandler (err, result) {
+      if (err)
+        return console.log(err.message);
+
+      alert(result);
+    }
+
+    // prepare a canvas element that will receive
+    // the image to decode, sets the callback for
+    // the result and then prepares the
+    // videoElement to send its source to the
+    // decoder.
+
+    qr.decodeFromCamera(video, resultHandler);
+
+
+    // attach some event handlers to reset and
+    // stop whenever we want.
+
+    reset.onclick = function () {
+      qr.decodeFromCamera(video, resultHandler);
+    };
+
+    stop.onclick = function () {
+      qr.stop();
+    };
+
+  })();
+  </script>
