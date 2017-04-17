@@ -56,7 +56,7 @@ $datos[1]=array(
         </tbody>
     </table>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12z">
           <button type="submit" class="btn btn-primary btn-block">
             Generate QR code
           </button>
