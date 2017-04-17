@@ -30,7 +30,8 @@
     <output id="list"></output>
 
       <!--<img src="../tests/assets/qrcode.png" alt="qr code">-->
-      <input type="button" id="decode" ng-click="decode()" value="Decode!" class="btn btn-primary">
+      <br><br><br><button id="decode" class="btn btn-primary">Decode!</button><br>
+      <label id="mensaje1">mensaje1</label>
   </div>
 </div>
 <script>
@@ -68,13 +69,23 @@
   var qr = new QCodeDecoder();
 
   if (!(qr.isCanvasSupported() && qr.hasGetUserMedia())) {
-    /*alert('Your browser doesn\'t match the required specs.');
-    throw new Error('Canvas and getUserMedia are required');*/
+    alert('Your browser doesn\'t match the required specs.');
+    throw new Error('Canvas and getUserMedia are required');
   }
-  
 
-</script>
-<script type="text/javascript">
+  var btn = document.querySelector('button#decode');
+  var img = document.querySelector('imgqr');
+
+  btn.onclick = function () {
+    qr.decodeFromImage(imgqr, function (err, result) {
+      if (err) throw err;
+      alert(result);
+      $("#mensaje1").text(result);
+    });
+  };
+  </script>
+  <!-- camara -->
+  <script type="text/javascript">
 
   (function () {
     'use strict';
@@ -87,15 +98,13 @@
     }
 
     var video = document.querySelector('video');
-    var reset = document.querySelector('#reset');
-    var stop = document.querySelector('#stop');
 
 
     function resultHandler (err, result) {
       if (err)
         return console.log(err.message);
-
       alert(result);
+      $("#mensaje1").text(result);
     }
 
     // prepare a canvas element that will receive
@@ -105,10 +114,6 @@
     // decoder.
 
     qr.decodeFromCamera(video, resultHandler);
-
-
-    // attach some event handlers to reset and
-    // stop whenever we want.
 
   })();
   </script>

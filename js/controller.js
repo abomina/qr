@@ -5,14 +5,23 @@ const modules = [
   'ngStorage'
 ];
 var app = angular.module("myApp", modules);
+app.directive("ngMobileClick", [function () {
+    return function (scope, elem, attrs) {
+        elem.bind("touchstart click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
 
+            scope.$apply(attrs["ngMobileClick"]);
+        });
+    }
+}])
 app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
 
     .when('/', {
 
-        templateUrl : 'views/login.html',
+        templateUrl : 'views/main.html',
         controller: "loginController"
 
     })
@@ -46,6 +55,12 @@ app.config(function($routeProvider, $locationProvider) {
         controller: "homeController"
 
     })
+
+    .when('/qrgenerator', {
+
+        templateUrl : 'views/qrgenerator.php',
+
+    })
     //$locationProvider.html5Mode(true);
 
 });
@@ -73,13 +88,6 @@ app.controller("DemoCtrl",function($scope,$http){
         //    $scope.message = "You have Filled Wrong Details! Error: " + error;
         //}
     }*/
-    $scope.decode = function () {
-        var img = document.querySelector('imgqr');
-        qr.decodeFromImage(imgqr, function (err, result) {
-          //if (err) throw err;
-          alert(result);
-        });
-    }
 });
 app.controller("report",function($scope,$http){
     $('#datetimepicker6').datetimepicker({
