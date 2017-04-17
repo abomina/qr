@@ -56,9 +56,9 @@ app.config(function($routeProvider, $locationProvider) {
 
     })
 
-    .when('/qrgenerator', {
+    .when('/qrtable', {
 
-        templateUrl : 'views/qrgenerator.php',
+        templateUrl : 'views/qrtable.php',
 
     })
     //$locationProvider.html5Mode(true);
