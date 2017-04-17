@@ -18,6 +18,16 @@ $datos[1]=array(
     "palletcount" => "1",
     "pallettotal" => "1",
 );
+
+$datos[2]=array(
+    "orderclientnum" => "3",
+    "delivery" => "3",
+    "partner"   => "BDG",
+    "address"  => "cra 10",
+    "barcode" => "13",
+    "palletcount" => "1",
+    "pallettotal" => "1",
+);
 ?>
 <div class="container">
 <form id="someForm" action="qrgenerator.php" target="newStuff" method="POST">
@@ -57,9 +67,15 @@ $datos[1]=array(
         </tbody>
     </table>
     <div class="row">
-        <div class="col-md-12z">
+        <div class="col-md-6">
           <button type="submit" class="btn btn-primary btn-block">
             Generate QR code
+          </button>
+          <br><br>
+        </div>
+                <div class="col-md-6">
+          <button type="submit" class="btn btn-primary btn-block">
+            Barcode
           </button>
           <br><br>
         </div>

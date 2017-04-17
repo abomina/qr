@@ -25,6 +25,15 @@ $datos[1]=array(
     "palletcount" => "1",
     "pallettotal" => "1",
 );
+$datos[2]=array(
+    "orderclientnum" => "3",
+    "delivery" => "3",
+    "partner"   => "BDG",
+    "address"  => "cra 10",
+    "barcode" => "13",
+    "palletcount" => "1",
+    "pallettotal" => "1",
+);
 /* fin estructura */
 $pdf = new TCPDF("P", "mm", 'A4', true, 'UTF-8', false);
 $pdf->SetPrintHeader(false);
@@ -45,8 +54,27 @@ $style = array(
 );
 $posyCOD=30;
 $posyPartner=25;
+
+$stylebarcode = array(
+    'position' => '',
+    'align' => 'C',
+    'stretch' => false,
+    'fitwidth' => true,
+    'cellfitalign' => '',
+    'border' => true,
+    'hpadding' => 'auto',
+    'vpadding' => 'auto',
+    'fgcolor' => array(0,0,0),
+    'bgcolor' => false, //array(255,255,255),
+    'text' => true,
+    'font' => 'helvetica',
+    'fontsize' => 8,
+    'stretchtext' => 4
+);
+
+
 //while($qr = $resultado->fetch_assoc()){
-for($i=0;$i<count($_POST["chkqr"]);$i++){
+/*for($i=0;$i<count($_POST["chkqr"]);$i++){
 	$hashed_password = crypt($datos[$i]["orderclientnum"],$datos[$i]["delivery"].$datos[$i]["address"]);
 
 	// QRCODE,H : QR-CODE Best error correction
@@ -55,7 +83,17 @@ for($i=0;$i<count($_POST["chkqr"]);$i++){
     $posyCOD=$posyCOD+60;
     $posyPartner=$posyPartner+60;
 // ---------------------------------------------------------
+}*/
+
+for($i=0;$i<count($_POST["chkqr"]);$i++){
+    $hashed_password = $datos[$i]["barcode"];
+
+    // QRCODE,H : QR-CODE Best error correction
+    $pdf->Cell(0, 0, 'Barcode', 0, 1);
+    $pdf->write1DBarcode($hashed_password, 'S25', '', '', '', 18, 0.5, $stylebarcode, 'N');
+// ---------------------------------------------------------
 }
+
 //Close and output PDF document
 $pdf->Output('example_050.pdf', 'I');
 ?>
