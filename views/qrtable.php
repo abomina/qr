@@ -20,8 +20,9 @@ $datos[1]=array(
 );
 ?>
 <div class="container">
+<form id="someForm" action="qrgenerator.php" target="newStuff" method="POST">
     <h2>QR codes</h2>
-    <p>The .table-striped class adds zebra-stripes to a table:</p>            
+    <p>Select the items and generate the QR code</p>            
     <table class="table table-hover">
         <thead>
             <tr>
@@ -41,7 +42,7 @@ $datos[1]=array(
                 for($i=0;$i<count($datos);$i++){
             ?>
             <tr>
-              <td><input type="checkbox" name="chkqr" id="chkqr" value="<?php echo $datos[$i]['orderclientnum'];?>"></td> 
+              <td><input type="checkbox" name="chkqr[]" id="chkqr" value="<?php echo $datos[$i]['orderclientnum'];?>"></td> 
               <td><?php echo $datos[$i]["orderclientnum"];?></td>
               <td><?php echo $datos[$i]["delivery"];?></td>
               <td><?php echo $datos[$i]["partner"];?></td> 
@@ -63,4 +64,5 @@ $datos[1]=array(
           <br><br>
         </div>
       </div>
+</form>
 </div>

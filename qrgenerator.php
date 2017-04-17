@@ -6,7 +6,6 @@ require("TCPDF/tcpdf.php");
 //$resultado =$connection->query($sql1);
 
 /* estructura de datos */
-
 $datos=array();
 $datos[0]=array(
     "orderclientnum" => "1",
@@ -47,7 +46,7 @@ $style = array(
 $posyCOD=30;
 $posyPartner=25;
 //while($qr = $resultado->fetch_assoc()){
-for($i=0;$i<count($datos);$i++){
+for($i=0;$i<count($_POST["chkqr"]);$i++){
 	$hashed_password = crypt($datos[$i]["orderclientnum"],$datos[$i]["delivery"].$datos[$i]["address"]);
 
 	// QRCODE,H : QR-CODE Best error correction
