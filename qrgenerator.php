@@ -6,6 +6,7 @@ require("TCPDF/tcpdf.php");
 //$resultado =$connection->query($sql1);
 
 /* estructura de datos */
+
 $datos=array();
 $datos[0]=array(
     "orderclientnum" => "1",
@@ -72,28 +73,29 @@ $stylebarcode = array(
     'stretchtext' => 4
 );
 
+if($_POST["qrcode"]!=""){
+    //while($qr = $resultado->fetch_assoc()){
+    for($i=0;$i<count($_POST["chkqr"]);$i++){
+    	$hashed_password = crypt($datos[$i]["orderclientnum"],$datos[$i]["delivery"].$datos[$i]["address"]);
 
-//while($qr = $resultado->fetch_assoc()){
-/*for($i=0;$i<count($_POST["chkqr"]);$i++){
-	$hashed_password = crypt($datos[$i]["orderclientnum"],$datos[$i]["delivery"].$datos[$i]["address"]);
-
-	// QRCODE,H : QR-CODE Best error correction
-	$pdf->write2DBarcode($hashed_password, 'QRCODE,H', 20, $posyCOD, 50, 50, $style, 'N');
-	$pdf->Text(20, $posyPartner, $datos[$i]["partner"]);
-    $posyCOD=$posyCOD+60;
-    $posyPartner=$posyPartner+60;
-// ---------------------------------------------------------
-}*/
-
-for($i=0;$i<count($_POST["chkqr"]);$i++){
-    $hashed_password = $datos[$i]["barcode"];
-
-    // QRCODE,H : QR-CODE Best error correction
-    $pdf->Cell(0, 0, 'Barcode', 0, 1);
-    $pdf->write1DBarcode($hashed_password, 'S25', '', '', '', 18, 0.5, $stylebarcode, 'N');
-// ---------------------------------------------------------
+    	// QRCODE,H : QR-CODE Best error correction
+    	$pdf->write2DBarcode($hashed_password, 'QRCODE,H', 20, $posyCOD, 50, 50, $style, 'N');
+    	$pdf->Text(20, $posyPartner, $datos[$i]["partner"]);
+        $posyCOD=$posyCOD+60;
+        $posyPartner=$posyPartner+60;
+    // ---------------------------------------------------------
+    }
 }
+if($_POST["barcode"]!=""){
+    for($i=0;$i<count($_POST["chkqr"]);$i++){
+        $hashed_password = $datos[$i]["barcode"];
 
+        // QRCODE,H : QR-CODE Best error correction
+        $pdf->Cell(0, 0, 'Barcode', 0, 1);
+        $pdf->write1DBarcode($hashed_password, 'S25', '', '', '', 18, 0.5, $stylebarcode, 'N');
+    // ---------------------------------------------------------
+    }
+}
 //Close and output PDF document
 $pdf->Output('example_050.pdf', 'I');
 ?>

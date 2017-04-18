@@ -68,13 +68,13 @@ $datos[2]=array(
     </table>
     <div class="row">
         <div class="col-md-6">
-          <button type="submit" class="btn btn-primary btn-block">
+          <button type="submit" class="btn btn-primary btn-block" name="qrcode" value="qrcode">
             Generate QR code
           </button>
           <br><br>
         </div>
                 <div class="col-md-6">
-          <button type="submit" class="btn btn-primary btn-block">
+          <button type="submit" class="btn btn-primary btn-block" name="barcode" value="barcode">
             Barcode
           </button>
           <br><br>
